@@ -2,7 +2,6 @@ from .base_category import BaseCategory
 from functools import reduce
 import requests
 from config import config
-import termtables as tt
 from terminaltables import DoubleTable
 
 class Pokemon(BaseCategory):
