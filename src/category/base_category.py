@@ -11,7 +11,7 @@ class BaseCategory:
         """Execute the category's api call"""
         pass
 
-    def set_attributes(self, response_data_json, read_from_file=False):
+    def set_attributes(self, data_json, read_from_file=False):
         """Set the attributes' of the category for displaying of information"""
         pass
 

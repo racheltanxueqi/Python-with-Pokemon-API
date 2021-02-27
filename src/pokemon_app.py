@@ -20,7 +20,7 @@ if __name__ == "__main__":
     try:
         validator_result = category_validator.validate(args_list)
         category_args = args_list[0]
-        search_value = args_list[1]
+        search_value = args_list[1].lower()
         category = category_dict[category_args](search_value)
 
         # Evaluate the command lind arguments

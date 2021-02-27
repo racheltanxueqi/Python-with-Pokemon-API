@@ -39,7 +39,7 @@ class Evaluator():
                 if days > 7:
                     self.fetch_and_update_resource(url, file_path, database_file_data, category, present_date)
                 else:
-                    new_payload = category.execute(category_dict[category.search_value]["data"], read_from_file=True)
+                    category.execute(category_dict[category.search_value]["data"], read_from_file=True)
             else:                   
                 # Has not fetch data based on searched value before, fetch data and store here
                 self.fetch_and_update_resource(url, file_path, database_file_data, category, present_date)
@@ -83,7 +83,8 @@ class Evaluator():
             # Store the information locally
             self.store_data(data_json, file_path)
         else: 
-            raise Exception("Bad Response: "+ str(status_code))
+            if status_code == 404:
+                raise Exception("No Result Found")
 
     def store_data(self, data, file_path):
         """Write data to storage text file"""

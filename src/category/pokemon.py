@@ -22,7 +22,7 @@ class Pokemon(BaseCategory):
         if len(args_list) > 2:
             raise Exception("Error: Too many arguments")
         if not args_list[1].isalnum():
-            raise Exception("Error: Search value must be alphabetical or numerical")
+            raise Exception("Error: Search value must be a valid name or id")
         
         return True
 
@@ -39,25 +39,43 @@ class Pokemon(BaseCategory):
         }
         return new_payload
 
-    def set_attributes(self, response_data_json, read_from_file=False):
+    def set_attributes(self, data_json, read_from_file=False):
         """Set the attributes' of the pokemon category for displaying of information.
         Atributes consist of id, name, types, locations, methods and stats."""
-        self.id = response_data_json["id"]
-        self.name = response_data_json["name"]
-        self.types_arr = response_data_json["types"]
-        self.stats_arr = response_data_json["stats"]
+        self.id = data_json["id"]
+        self.name = data_json["name"]
 
         if read_from_file:
-            self.location_area_encounters = response_data_json["location_area_encounters"]
+            print(data_json)
+            self.types_arr = data_json["types"]
+            self.stats_arr = data_json["stats"]
+            self.location_area_encounters = data_json["location_area_encounters"]
         else:
-            location_api = response_data_json["location_area_encounters"]
+            # strip and parse types information
+            types_arr = []
+            for types_element in data_json["types"]:
+                types_arr.append(types_element["type"]["name"])
+            self.types_arr = types_arr
+
+            # strip  and parse stats information
+            stats_arr = []
+            for stats_element in data_json["stats"]:
+                stats_arr.append({
+                    "stat_name": stats_element["stat"]["name"], 
+                    "base_stat": stats_element["base_stat"]
+                })
+            self.stats_arr = stats_arr
+
+            # strip  and parse encounter locations and methods information
+            location_api = data_json["location_area_encounters"]
             location_response = requests.get(location_api)
             location_res_status_code = location_response.status_code
             if (location_res_status_code == 200):
                 location_area_encounters = location_response.json()
                 self.parse_location_and_method(location_area_encounters)
             else: 
-                raise Exception("Bad Response:"+ str(location_res_status_code))
+                if location_res_status_code == 404:
+                    raise Exception("No Result Found")
     
     
     def parse_location_and_method(self, location_area_encounters):
@@ -82,10 +100,7 @@ class Pokemon(BaseCategory):
     def format_information(self):
         """Format the pokemon's information for display"""
         # Format display of types
-        type_data = []
-        for type in self.types_arr:
-            type_data.append(type["type"]["name"])
-        type_tag = DoubleTable([type_data])
+        type_tag = DoubleTable([self.types_arr])
 
         # Format display of encounter details
         if(len(self.location_area_encounters) > 0):
@@ -100,7 +115,7 @@ class Pokemon(BaseCategory):
         # Format display of stats
         stats_data = [["Stats Name", "Base Stats"]]
         for stat in self.stats_arr:
-            stats_data.append([stat["stat"]["name"], stat["base_stat"]])
+            stats_data.append([stat["stat_name"], stat["base_stat"]])
         stats_table = DoubleTable(stats_data)
 
         # Format final resulting table
