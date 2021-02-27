@@ -27,7 +27,7 @@ The program has the following functionality:
 - Option 2: Process raw data fetch from api call to strip redundant fields and store
 
 
-| | Option 1 | Option2 |
+|    | Option 1 | Option 2 |
 |-|----------|---------|
 | Better time complexity for reading from cache| | :heavy_check_mark: |
 | Better extendability for faster reading from cache and display other info  (possible enhancement)| :heavy_check_mark: | |
