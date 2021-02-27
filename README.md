@@ -2,6 +2,16 @@
 
 ## About
 A terminal application to retrieve data about the Pokemon when queried.
+The program has the following functionality:
+- Ability to cache the stored information locally (using a text file)
+- Ability to search by Pokemon Name or ID.
+- Display​ only​ the following information
+    - Pokemon ID
+    - Pokemon Name
+    - Pokemon Type(s)
+    - Pokemon Encounter Location(s) and method(s) in ​Kanto​ only
+        - If there are no encounter location in Kanto, display ‘-’ Pokemon stats (speed, def, etc etc)
+- If the stored information is over a week old, the data should be retrieved again from the API. If not, the data should be retrieved from the text file
 
 ### System Architecture 
 ![](assets/architecture_diagram.png)
@@ -41,4 +51,31 @@ It uses a few open source project to run:
 #### 4. Once completed, run the following command to install the dependencies. 
 
     pip install requirements.txt
+
+## Running the Terminal Application
+
+### Once all the setup has been done, you may
+#### 1. Go to `src/` direction
+
+    cd src/
+
+#### 2. Input the command line in the following format:
+    
+    python pokemon_app.py -p yourSearchValue
+
+    
+`yourSearchValue can be pokemon name or id`
+
+#### 3. View the displayed information
+
+`Sample Test result`
+
+Input to terminal:
+
+    python pokemon_app.py -p 121
+
+Output in terminal:
+
+![](assets/sample_output.png)
+
 
