@@ -105,8 +105,8 @@ Output in terminal:
 
 # Future Work for Improvements 
 
-- [] Implementation of Unit Testing
+- [ ] Implementation of Unit Testing
 
-- [] Allow for more calling of other pokemon API
+- [ ] Allow for more calling of other pokemon API
 
 
