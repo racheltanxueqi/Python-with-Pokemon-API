@@ -30,7 +30,7 @@ The program has the following functionality:
 |    | Option 1 | Option 2 |
 |-|----------|---------|
 | Better time complexity for reading from cache| | :heavy_check_mark: |
-| Better extendability for faster reading from cache and display other info  (possible enhancement)| :heavy_check_mark: | |
+| Better extendability for faster reading from cache and display other information (possible enhancement)| :heavy_check_mark: | |
 | Smaller storage space (better space complexity) | |:heavy_check_mark:|
 
 
@@ -38,9 +38,10 @@ The program has the following functionality:
 
 - Option 1: Coding style and storage schema is extensible 
 
-    To allow making api call and storing of response from `pokemon/name` and `pokemon/id` as well as in the future, more search options`ability/id`, `types/id`
-    - First layer key is the category, pokemon for now and future, could including key such as ability or types
-    - Second layer key is the searched value. With the assumption that searching via name and id returns the same data content, I will just both name and id as the keys regardless of the searched value is a name or id. This is the reduce the number of api call of the same content.
+    To allow making api call and storing of response from `pokemon/name` and `pokemon/id` as well as in the future, more search options `ability/id`, `types/id`
+    - First layer key is the category, `pokemon` for now and future, could including key such as `ability` or `types`
+    - Second layer key is the searched value. 
+      *With the assumption that searching via name and id returns the same data content*, I will just store both name and id as the keys regardless of the searched value is a name or id. This is to reduce the number of api call that will return the same content.
     - The final layer which is the second layer key's value consists of a dictionary of the information I am storing. This consists of `last_stored_value`, processed `data` which is discussed in DD1.
 
 
