@@ -101,6 +101,6 @@ Input to terminal:
 
 Output in terminal:
 
-<img src="assets/sample_output.png" width="200">
+<img src="assets/sample_output.png" width="300">
 
 
