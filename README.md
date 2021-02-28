@@ -103,4 +103,8 @@ Output in terminal:
 
 <img src="assets/sample_output.png" width="300">
 
+# Future Work for Improvements 
+[] Implementation of Unit Testing
+[] Allow for more calling of other pokemon API
+
 
