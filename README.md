@@ -100,6 +100,6 @@ Input to terminal:
 
 Output in terminal:
 
-![](assets/sample_output.png)
+<img src="assets/sample_output.png" width="200">
 
 
